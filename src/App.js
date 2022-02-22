@@ -9,6 +9,8 @@ import {
 import Login from "./components/Login";
 import FriendsList from "./components/FriendsList";
 import AddFriend from "./components/AddFriend";
+import Logout from "./components/Logout";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
@@ -25,21 +27,25 @@ function App() {
           <Link className="links" to="friends/add">
             Add Friend
           </Link>
-          <Link className="links" to="login">
+          <Link className="links" to="logout">
             Logout
           </Link>
         </header>
         <Route exact path="/">
           <Login />
         </Route>
+
         <Route exact path="/login">
           <Redirect to="/" />
         </Route>
-        <Route exact path="/friends">
-          <FriendsList />
-        </Route>
+
+        <PrivateRoute exact path="/friends" component={FriendsList} />
+
         <Route exact path="/friends/add">
           <AddFriend />
+        </Route>
+        <Route exact path="/logout">
+          <Logout />
         </Route>
       </div>
     </Router>
