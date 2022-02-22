@@ -1,9 +1,24 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 const Login = () => {
-  return <h2>Login</h2>;
+  return (
+    <div>
+      <h2>Login</h2>
+      <form>
+        <div>
+          <label htmlFor="username">Username:</label>
+          <input id="username" placeholder="Username" />
+        </div>
+        <br />
+        <div>
+          <label htmlFor="password">Password:</label>
+          <input type="password" id="password" placeholder="Password" />
+        </div>
+      </form>
+    </div>
+  );
 };
 
 const FriendsList = () => {
@@ -18,16 +33,16 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Route path="/">
+        <Route exact path="/">
           <Login />
         </Route>
-        <Route path="/login">
-          <Login />
+        <Route exact path="/login">
+          <Redirect to="/" />
         </Route>
-        <Route path="/friends">
+        <Route exact path="/friends">
           <FriendsList />
         </Route>
-        <Route path="/friends/add">
+        <Route exact path="/friends/add">
           <AddFriend />
         </Route>
       </div>
